@@ -10,6 +10,8 @@ namespace ProtocolCS
 {
     public class Serializer
     {
+        public static int senderId { get; set; }
+
         private static JsonSerializerSettings defaultSerializerSetting
         {
             get
@@ -21,11 +23,13 @@ namespace ProtocolCS
                 return setting;
             }
         }
-
-        public static string ToJson<T>(T obj)
+        
+        public static string ToJson(PacketBase obj)
         {
             if (obj == null)
                 throw new ArgumentNullException("obj is null");
+
+            obj.senderId = senderId;
 
             return JsonConvert.SerializeObject(
                 obj,

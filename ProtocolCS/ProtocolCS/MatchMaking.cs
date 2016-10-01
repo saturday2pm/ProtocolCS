@@ -9,14 +9,14 @@ namespace ProtocolCS
     /// <summary>
     /// 클라이언트가 서버로 보내는 매칭 요청
     /// </summary>
-    public class JoinQueue
+    public class JoinQueue : PacketBase
     {
     }
 
     /// <summary>
     /// 클라이언트가 서버로 보내는 매칭 취소 요청
     /// </summary>
-    public class LeaveQueue
+    public class LeaveQueue : PacketBase
     {
 
     }

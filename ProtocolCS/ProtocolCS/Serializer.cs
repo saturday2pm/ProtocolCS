@@ -38,7 +38,7 @@ namespace ProtocolCS
             if (string.IsNullOrEmpty(json))
                 throw new ArgumentNullException("json is null/empty");
 
-            return JsonConvert.DeserializeObject<T>(
+            return JsonConvert.DeserializeObject(
                 json,
                 defaultSerializerSetting);
         }

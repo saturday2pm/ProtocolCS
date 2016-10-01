@@ -20,4 +20,20 @@ namespace ProtocolCS
     {
 
     }
+
+    /// <summary>
+    /// 매치가 성사되면 서버가 클라에게 보내주는 패킷
+    /// </summary>
+    public class MatchSuccess : PacketBase
+    {
+        /// <summary>
+        /// 게임 서버 주소
+        /// </summary>
+        public string gameServerAddress { get; set; }
+
+        /// <summary>
+        /// 게임 서버에 연결한 후, 인증하기 위한 토큰
+        /// </summary>
+        public string matchToken { get; set; }
+    }
 }

@@ -11,6 +11,11 @@ namespace ProtocolCS
         public int frameNo { get; set; }
     }
 
+    public class JoinGame : IngamePacket
+    {
+        public string matchToken { get; set; }
+    }
+
     public class StartGame : IngamePacket
     {
         public Player[] players { get; set; }

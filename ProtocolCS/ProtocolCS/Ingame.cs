@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProtocolCS
 {
-    public class IngamePacket
+    public class IngamePacket : PacketBase
     {
         public int frameNo { get; set; }
     }

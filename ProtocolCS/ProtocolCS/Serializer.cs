@@ -32,6 +32,16 @@ namespace ProtocolCS
                 Formatting.None,
                 defaultSerializerSetting);
         }
+
+        public static object ToObject(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+                throw new ArgumentNullException("json is null/empty");
+
+            return JsonConvert.DeserializeObject<T>(
+                json,
+                defaultSerializerSetting);
+        }
         public static T ToObject<T>(string json)
         {
             if (string.IsNullOrEmpty(json))

@@ -16,7 +16,7 @@ namespace ProtocolCS
     /// </summary>
     public class Waypoint
     {
-
+        public int id { get; set; }
     }
 
     public enum CastleType

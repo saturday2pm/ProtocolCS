@@ -14,6 +14,15 @@ namespace ProtocolCS
     }
 
     /// <summary>
+    /// [테스트용] 봇게임을 요청한다.
+    /// <para />
+    /// 이 패킷을 보내면 봇게임으로 매칭된다.
+    /// </summary>
+    public class JoinBotQueue : JoinQueue
+    {
+    }
+
+    /// <summary>
     /// 클라이언트가 서버로 보내는 매칭 취소 요청
     /// </summary>
     public class LeaveQueue : PacketBase

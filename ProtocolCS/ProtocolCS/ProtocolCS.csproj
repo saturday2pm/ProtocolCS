@@ -47,6 +47,7 @@
     <Compile Include="Constants.Ext\CastleCapa.Ext.cs" />
     <Compile Include="Constants\CastleCapa.cs" />
     <Compile Include="Constants\ProtocolVersion.cs" />
+    <Compile Include="Constants\ReservedPlayerId.cs" />
     <Compile Include="Ingame.cs" />
     <Compile Include="Ingame.Events.cs" />
     <Compile Include="MatchMaking.cs" />

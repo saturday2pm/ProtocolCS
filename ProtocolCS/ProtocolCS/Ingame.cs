@@ -23,6 +23,11 @@ namespace ProtocolCS
         public long seed { get; set; }
 
     }
+    public class CancelGame : IngamePacket
+    {
+
+    }
+
     public class RejoinGame : StartGame
     {
         public Frame[] frames { get; set; }

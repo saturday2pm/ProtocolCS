@@ -53,6 +53,7 @@
     <Compile Include="MatchMaking.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="PacketBase.cs" />
+    <Compile Include="PacketHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serializer.cs" />
     <Compile Include="UriBuilder.cs" />

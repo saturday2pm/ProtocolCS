@@ -60,9 +60,7 @@ namespace ProtocolCS
                     handlers[typeof(T)] = handler;
                 else
                 {
-                    handlers[typeof(T)].GetType()
-                        .GetMethod("op_Add")
-                        .Invoke(handlers[typeof(T)], new object[] { handler });
+                    handlers[typeof(T)] = Delegate.Combine((Delegate)handlers[typeof(T)], handler);
                 }
             }
         }
@@ -72,12 +70,10 @@ namespace ProtocolCS
             lock (handlersLock)
             {
                 if (handlers.ContainsKey(typeof(T)) == false)
-                    handlers[typeof(T)] = handler;
+                    Console.WriteLine("no handelr");
                 else
                 {
-                    handlers[typeof(T)].GetType()
-                        .GetMethod("op_Sub")
-                        .Invoke(handlers[typeof(T)], new object[] { handler });
+                    handlers[typeof(T)] = Delegate.Remove((Delegate)handlers[typeof(T)], handler);
                 }
             }
         }

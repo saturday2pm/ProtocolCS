@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ProtocolCS
 {
     public class PacketHelper
     {
-        private static Dictionary<Type, Action<PacketBase>> handlers { get; set; }
+        private static Dictionary<Type, object> handlers { get; set; }
         private static Queue<PacketBase> q { get; set; }
         private static object handlersLock;
         private static object qLock;
         
         static PacketHelper()
         {
-            handlers = new Dictionary<Type, Action<PacketBase>>();
+            handlers = new Dictionary<Type, object>();
             q = new Queue<PacketBase>();
 
             handlersLock = new object();
@@ -45,7 +44,9 @@ namespace ProtocolCS
                     if (handler == null)
                         continue;
 
-                    handler.Invoke(packet);
+                    handler.GetType()
+                        .GetMethod("Invoke")
+                        .Invoke(handler, new object[] { packet });
                 }
             }
         }
@@ -55,7 +56,14 @@ namespace ProtocolCS
         {
             lock (handlersLock)
             {
-                handlers[typeof(T)] += (Action<PacketBase>)handler;
+                if (handlers.ContainsKey(typeof(T)) == false)
+                    handlers[typeof(T)] = handler;
+                else
+                {
+                    handlers[typeof(T)].GetType()
+                        .GetMethod("op_Add")
+                        .Invoke(handlers[typeof(T)], new object[] { handler });
+                }
             }
         }
         public static void RemoveHandler<T>(Action<T> handler)
@@ -63,7 +71,14 @@ namespace ProtocolCS
         {
             lock (handlersLock)
             {
-                handlers[typeof(T)] -= (Action<PacketBase>)handler;
+                if (handlers.ContainsKey(typeof(T)) == false)
+                    handlers[typeof(T)] = handler;
+                else
+                {
+                    handlers[typeof(T)].GetType()
+                        .GetMethod("op_Sub")
+                        .Invoke(handlers[typeof(T)], new object[] { handler });
+                }
             }
         }
 

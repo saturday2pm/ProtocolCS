@@ -16,6 +16,12 @@ namespace ProtocolCS
         public Waypoint to { get; set; }
     }
 
+    public class MoveCancelEvent : IngameEvent
+    {
+        public Waypoint from { get; set; }
+        public Waypoint to { get; set; }
+    }
+
     public class UpgradeEvent : IngameEvent
     {
         public Castle castle { get; set; }

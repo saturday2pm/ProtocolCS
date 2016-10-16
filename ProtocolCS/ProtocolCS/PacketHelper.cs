@@ -7,12 +7,12 @@ namespace ProtocolCS
 {
     public class PacketHelper
     {
-        private static Dictionary<Type, object> handlers { get; set; }
-        private static Queue<PacketBase> q { get; set; }
-        private static object handlersLock;
-        private static object qLock;
+        private Dictionary<Type, object> handlers { get; set; }
+        private Queue<PacketBase> q { get; set; }
+        private object handlersLock;
+        private object qLock;
         
-        static PacketHelper()
+        public PacketHelper()
         {
             handlers = new Dictionary<Type, object>();
             q = new Queue<PacketBase>();
@@ -21,7 +21,7 @@ namespace ProtocolCS
             qLock = new object();
         }
 
-        public static void Flush()
+        public void Flush()
         {
             var packetList = new List<PacketBase>();
 
@@ -51,7 +51,7 @@ namespace ProtocolCS
             }
         }
 
-        public static void AddHandler<T>(Action<T> handler)
+        public void AddHandler<T>(Action<T> handler)
             where T : PacketBase
         {
             lock (handlersLock)
@@ -64,7 +64,7 @@ namespace ProtocolCS
                 }
             }
         }
-        public static void RemoveHandler<T>(Action<T> handler)
+        public void RemoveHandler<T>(Action<T> handler)
             where T : PacketBase
         {
             lock (handlersLock)
@@ -78,13 +78,13 @@ namespace ProtocolCS
             }
         }
 
-        public static void PushPacket(string json)
+        public void PushPacket(string json)
         {
             var packet = Serializer.ToObject(json);
 
             PushPacket((PacketBase)packet);
         }
-        public static void PushPacket(PacketBase packet)
+        public void PushPacket(PacketBase packet)
         {
             lock (qLock)
             {

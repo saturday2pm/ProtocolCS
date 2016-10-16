@@ -15,7 +15,7 @@ namespace testbed
         {
             var json = Serializer.ToJson(new StartGame());
 
-
+            //
             Console.WriteLine(json);
         }
     }

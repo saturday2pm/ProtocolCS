@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace ProtocolCS
-{
+{ 
     public class IngameEvent
     {
         public Player player { get; set; }
